@@ -19,5 +19,5 @@
 #
 ---
   include:
-   - board: nrf52840dk_nrf52840
-     shield: kbName
+   - board: nrf52840dk_nrf52
+     shield: KbName
