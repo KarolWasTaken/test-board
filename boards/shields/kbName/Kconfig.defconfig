@@ -1,0 +1,6 @@
+if KBNAME
+
+config ZMK_KEYBOARD_NAME
+    default "kbName"
+
+endif
