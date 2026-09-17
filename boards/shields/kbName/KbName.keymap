@@ -9,11 +9,17 @@
 
         default_layer {
             bindings = <
-                &bt BT_CLR_ALL  &kp NUMBER_2    &kp NUMBER_3
-                &bt BT_NXT  &bt BT_PRV    &kp NUMBER_6
-                &out OUT_USB &out OUT_BLE   &kp NUMBER_9
+                &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3
+                &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6
+                &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9
                 &bt BT_CLR  
             >;
         };
     };
 };
+
+/*
+&bt BT_CLR_ALL  &kp NUMBER_2    &kp NUMBER_3
+                &bt BT_NXT  &bt BT_PRV    &kp NUMBER_6
+                &out OUT_USB &out OUT_BLE   &kp NUMBER_9
+                &bt BT_CLR  */
