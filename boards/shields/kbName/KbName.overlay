@@ -2,7 +2,7 @@
 
 / {
     chosen {
-        zmk,kscan = &default_kscan;
+        zmk,kscan = &default_composite;
         zmk,matrix_transform = &default_transform;
     };
     default_kscan: kscan {
@@ -18,16 +18,41 @@
             <&pro_micro 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
             <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
     };
+    // standalone bluetooth button driver
+    bt_button_kscan: kscan_bt {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+        input-gpios = <&pro_micro 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    };
+
+    // combining the main matrix and the bt button
+    kscan_composite: kscan_composite {
+        compatible = "zmk,kscan-composite";
+        rows = <4>;    // Expanded to 4 rows to accommodate the extra button row
+        columns = <3>;
+
+        matrix {
+            kscan = <&default_kscan>;
+        };
+
+        // appends the button as virtual row 3, column 0
+        bt_key {
+            kscan = <&bt_button_kscan>;
+            row-offset = <3>; 
+            col-offset = <0>;
+        };
+    };
 
     default_transform: matrix_transform {
         compatible = "zmk,matrix-transform";
-        rows = <3>;
+        rows = <4>;
         columns = <3>;
 
         map = <
             RC(0,0) RC(0,1) RC(0,2)
             RC(1,0) RC(1,1) RC(1,2)
             RC(2,0) RC(2,1) RC(2,2)
+            RC(3,0)  
         >;
     };
 };
