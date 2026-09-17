@@ -2,7 +2,7 @@
 
 / {
     chosen {
-        zmk,kscan = &default_composite;
+        zmk,kscan = &kscan_composite;
         zmk,matrix_transform = &default_transform;
     };
     default_kscan: kscan {
