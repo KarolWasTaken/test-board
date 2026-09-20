@@ -25,6 +25,12 @@
         input-gpios = <&pro_micro 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
     };
 
+    // layer select switch (low = pressed = layer 1 held)
+    layer_sw_kscan: kscan_layer_sw {
+        compatible = "zmk,kscan-gpio-direct";
+        input-gpios = <&pro_micro 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    };
+
     // combining the main matrix and the bt button
     kscan_composite: kscan_composite {
         compatible = "zmk,kscan-composite";
@@ -41,6 +47,12 @@
             row-offset = <3>; 
             col-offset = <0>;
         };
+        // virtual row 3, column 1
+        layer_sw {
+            kscan = <&layer_sw_kscan>;
+            row-offset = <3>;
+            col-offset = <1>;
+        };
     };
 
     default_transform: matrix_transform {
@@ -52,7 +64,7 @@
             RC(0,0) RC(0,1) RC(0,2)
             RC(1,0) RC(1,1) RC(1,2)
             RC(2,0) RC(2,1) RC(2,2)
-            RC(3,0)  
+            RC(3,0) RC(3,1)
         >;
     };
 };
